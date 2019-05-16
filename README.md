@@ -1,4 +1,4 @@
-# Computer-Graphics contributing guide
+### Computer-Graphics contributing guide
 1 - Fork the project & clone locally.
 2 - Create an upstream remote and sync your local copy before you branch.
 3 - Branch for each separate piece of work.
