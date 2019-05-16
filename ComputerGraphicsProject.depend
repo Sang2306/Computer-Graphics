@@ -1,0 +1,133 @@
+# depslib dependency file v1.0
+1555512281 source:c:\users\letanhsang\desktop\computer-graphics-subject2019\main.cpp
+	<iostream>
+	<cmath>
+	<cstdio>
+	<graphics.h>
+	"consolelib.h"
+
+1266072614 c:\program files\codeblocks-ep\sdk\winbgim\include\graphics.h
+	<windows.h>
+	<limits.h>
+	<sstream>
+
+1555334630 c:\users\letanhsang\desktop\computer-graphics-subject2019\consolelib.h
+	<iostream>
+	<windows.h>
+
+1555464989 source:c:\users\letanhsang\desktop\computer-graphics-subject2019\line.cpp
+	<iostream>
+	<graphics.h>
+	<math.h>
+
+1557756779 source:c:\users\kim yen\desktop\computer-graphics-subject2019\main.cpp
+	<iostream>
+	<cmath>
+	<cstdio>
+	<graphics.h>
+	"consolelib.h"
+
+1266072614 c:\program files (x86)\codeblocks-ep\sdk\winbgim\include\graphics.h
+	<windows.h>
+	<limits.h>
+	<sstream>
+
+1557722775 c:\users\kim yen\desktop\computer-graphics-subject2019\consolelib.h
+	<iostream>
+	<windows.h>
+
+1557722775 ated upstream
+
+1557937057 source:c:\users\sang4vn\desktop\computer-graphics-subject2019\main.cpp
+	<iostream>
+	<cmath>
+	<cstdio>
+	<graphics.h>
+	"consolelib.h"
+
+1266072614 c:\program files\codeblock-edu\codeblocks-ep\sdk\winbgim\include\graphics.h
+	<windows.h>
+	<limits.h>
+	<sstream>
+
+1557675104 c:\users\sang4vn\desktop\computer-graphics-subject2019\consolelib.h
+	<iostream>
+	<windows.h>
+
+1557675104 shed changes
+
+1557988328 source:c:\users\sang4vn\desktop\computer-graphics-subject2019\src\main.cpp
+	<iostream>
+	<cstdio>
+	<graphics.h>
+	"../include/base.h"
+	"../include/consolelib.h"
+	"../include/objects2d.h"
+	"../include/objects3d.h"
+
+1557985681 c:\users\sang4vn\desktop\computer-graphics-subject2019\include\consolelib.h
+	<iostream>
+	<windows.h>
+
+1557988429 c:\users\sang4vn\desktop\computer-graphics-subject2019\include\base.h
+	<graphics.h>
+
+1557986700 source:c:\users\sang4vn\desktop\computer-graphics-subject2019\src\3d-objects.cpp
+	"../include/3d-objects.h"
+	"../include/base.h"
+	<cmath>
+
+1557986821 c:\users\sang4vn\desktop\computer-graphics-subject2019\include\3d-objects.h
+	"../include/base.h"
+	<cmath>
+
+1557987009 source:c:\users\sang4vn\desktop\computer-graphics-subject2019\src\base.cpp
+	"../include/base.h"
+	<cmath>
+
+1557987560 c:\users\sang4vn\desktop\computer-graphics-subject2019\include\objects2d.h
+
+1557987304 c:\users\sang4vn\desktop\computer-graphics-subject2019\include\objects3d.h
+
+1557987563 source:c:\users\sang4vn\desktop\computer-graphics-subject2019\src\objects2d.cpp
+	"../include/objects2d.h"
+	"../include/base.h"
+
+1557987352 source:c:\users\sang4vn\desktop\computer-graphics-subject2019\src\objects3d.cpp
+	"../include/objects3d.h"
+	"../include/base.h"
+	<cmath>
+
+1557988328 source:c:\users\sang4vn\desktop\computer-graphics\src\main.cpp
+	<iostream>
+	<cstdio>
+	<graphics.h>
+	"../include/base.h"
+	"../include/consolelib.h"
+	"../include/objects2d.h"
+	"../include/objects3d.h"
+
+1557988487 c:\users\sang4vn\desktop\computer-graphics\include\base.h
+	<graphics.h>
+
+1557985681 c:\users\sang4vn\desktop\computer-graphics\include\consolelib.h
+	<iostream>
+	<windows.h>
+
+1557987560 c:\users\sang4vn\desktop\computer-graphics\include\objects2d.h
+
+1557987304 c:\users\sang4vn\desktop\computer-graphics\include\objects3d.h
+
+1557987563 source:c:\users\sang4vn\desktop\computer-graphics\src\objects2d.cpp
+	"../include/objects2d.h"
+	"../include/base.h"
+
+1557987352 source:c:\users\sang4vn\desktop\computer-graphics\src\objects3d.cpp
+	"../include/objects3d.h"
+	"../include/base.h"
+	<cmath>
+
+1557987009 source:c:\users\sang4vn\desktop\computer-graphics\src\base.cpp
+	"../include/base.h"
+	<cmath>
+
