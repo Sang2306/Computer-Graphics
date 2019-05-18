@@ -55,9 +55,7 @@ void chooseCoorSystem()
     {
         cleardevice();
         draw3DCoor();
-        Point2D pz = getPointOz(50);
-        putpixel(pz.x, pz.y, YELLOW);
-        veHinhHop(55, 55, 55);
+        drawCube(50, 50, 50);
     }
 }
 

@@ -2,6 +2,6 @@
 #define OBJECTS3D_H
 
 //ham ve hinh hop
-void veHinhHop(int dai, int rong, int cao);
+void drawCube(int ox, int oy, int oz);
 
 #endif // OBJECTS3D_H

@@ -1,6 +1,11 @@
 #include "../include/base.h"
 #include <cmath>
 
+void putpoint(const Point2D& point, int color)
+{
+    putpixel(point.x, point.y, color);
+}
+
 void draw2DCoor(const Point2D& mid)
 {
     bresenhamLine(Point2D(0, mid.y), Point2D(width, mid.y), WHITE, false); outtextxy(width-12, mid.y, "X");   //X
@@ -12,25 +17,26 @@ void draw3DCoor()
 
     bresenhamLine(Point2D(width, midY), Point2D(midX, midY), WHITE, false); outtextxy(width-12, midY, "X");        //X
     bresenhamLine(Point2D(midX, 0), Point2D(midX, midY), WHITE, false); outtextxy(midX, 0, "Y");                   //Y
-    int total_unit = 65; //tong so don vi
-    for(int unit = 0; unit <= total_unit; unit++)
-    {
-        Point2D temp = getPointOz(unit); //lay diem toa do tai moi cham
-        putpixel(temp.x, temp.y, WHITE); //va hien thi len man hinh
-    }
-    Point2D temp = getPointOz(total_unit); //lay diem toa do tai moi cham
-    outtextxy(temp.x, temp.y, "Z");            //Z
+    Point3D origin_3D(0, 0, 0);
+    Point3D endZ_3D(0, 0, 30*5);
+    Point2D origin_2D = transformTo2D(origin_3D);
+    Point2D endZ_2D = transformTo2D(endZ_3D);
+    realToMachine(origin_2D);
+    realToMachine(endZ_2D);
+    bresenhamLine(origin_2D, endZ_2D, WHITE, false);
+    outtextxy(endZ_2D.x, endZ_2D.y, "Z");
 }
 
-Point2D getPointOz(int unit)
+/*Ham nay se bi loai bo trong cac phien ban tiep theo*/
+Point2D getPointOz(int unit_num)
 {
     /*
         ham tra ve toa do cua don vi tren truc oz
     */
     Point2D point;
     //chuyen doi toa do cho truc z
-    point.x = midX - unit*5*cos(45); //x = toa do tam.x - don vi * 5 px * cos(45)
-    point.y = midY + unit*5*sin(45); //y = toa do tam.y + don vi * 5 px + sin(45)
+    point.x = midX - unit_num*5*cos(45); //x = toa do tam.x - don vi * 5 px * cos(45)
+    point.y = midY + unit_num*5*sin(45); //y = toa do tam.y + don vi * 5 px + sin(45)
     return point;
 }
 
@@ -45,6 +51,41 @@ void realToMachine(Point2D& point)
         point.y = point.y*5*-1 + midY;
     else
         point.y = midY - point.y*5;
+}
+
+Point2D transformTo2D(Point3D& point)
+{
+    float a = 0.5; //cabinet 1/2 do dai bi giam
+    float phi = 60; //thay doi goc cua truc oz so voi truc ox
+    float vector[4] = {
+        point.x,
+        point.y,
+        point.z,
+        point.h
+    };
+    float transformMaxtrix[4][4] = {
+        { 1, 0, -1*a*cos(phi*PI/180.0), 0},
+        { 0, 1, -1*a*sin(phi*PI/180.0), 0},
+        { 0, 0, 0, 0},
+        { 0, 0, 0, 1}
+    };
+    point.x =   vector[0] * transformMaxtrix[0][0] +
+                vector[1] * transformMaxtrix[0][1] +
+                vector[2] * transformMaxtrix[0][2] +
+                vector[3] * transformMaxtrix[0][3];
+    point.y =   vector[0] * transformMaxtrix[1][0] +
+                vector[1] * transformMaxtrix[1][1] +
+                vector[2] * transformMaxtrix[1][2] +
+                vector[3] * transformMaxtrix[1][3];
+    point.z =   vector[0] * transformMaxtrix[2][0] +
+                vector[1] * transformMaxtrix[2][1] +
+                vector[2] * transformMaxtrix[2][2] +
+                vector[3] * transformMaxtrix[2][3];
+    point.h =   vector[0] * transformMaxtrix[3][0] +
+                vector[1] * transformMaxtrix[3][1] +
+                vector[2] * transformMaxtrix[3][2] +
+                vector[3] * transformMaxtrix[3][3];
+    return Point2D(point.x, point.y);
 }
 
 void translateCompute(Point2D& point, float tr_x, float tr_y)
