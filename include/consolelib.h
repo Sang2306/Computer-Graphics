@@ -23,11 +23,11 @@ void Moveto(short x,short y)
 }
 void Clear_at(int x0, int y0, int x1, int y1)
 {
-	for (int i = x0; i <= x1; i+=5)
+	for (int i = x0; i <= x1; i+=15)
 	{
 		for (int j = y0; j <= y1; j+=1)
 		{
-			Print_at(i, j,"          ");
+			Print_at(i, j,"               ");
 		}
 	}
 }

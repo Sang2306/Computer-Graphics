@@ -28,7 +28,7 @@ class Point3D : public Point2D
         Point3D(float x, float y, float z) : Point2D(x, y), z(z){}
 };
 
-const int width = 1080, height = 700;
+const int width = 1080, height = 720;
 const float midX = width/2;
 const float midY = height/2;
 /* put diem tren man hinh */
@@ -51,8 +51,10 @@ void rotateCompute(Point2D& point, float alpha);
 void bresenhamLine(Point2D p1, Point2D p2, int color, bool solid=true);
 void drawCircle(Point2D center, int x, int y, int color);
 void bresenhamCircle(Point2D center, float radius, int color);
-void drawEllipse(Point2D center, int x, int y, int color);
+/*ham ve duong ellipse su dungf thuat toan brasenham*/
+void drawEllipse(Point2D center, int x, int y, int color, bool half_dotted = false); /*half_dotted : nua trong ellipse bi "...." */
 void haftBresenhamEllipse(Point2D center, int a, int b, int color);
 void bresenhamEllipse(Point2D center, int a, int b, int color);
-
+/*ham ve duong ellipse su dung thuat toan mid point*/
+void ellipseMidPoint(Point2D center, int a, int b, int color, bool half_dotted = false);
 #endif // BASE_H
