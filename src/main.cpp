@@ -37,7 +37,7 @@ int chooseCoorSystem()
         Clear_at(0, 0, 60, 40);
         goto again;
     }
-    cleardevice();
+    clearviewport();
     if(choice == 3)
         return -1;
     if(choice == 1)
@@ -75,10 +75,12 @@ void chooseObject2Draw()
     {
         case 1: {
                 drawTrafficLight();
+                getch();
                 return;
             }
         case 2: {
                 drawEmojiWow();
+                getch();
                 return;
             }
     }
@@ -109,10 +111,12 @@ void chooseObject3Draw()
     {
         case 1: {
                 drawCube(origin, dai, cao, rong);
+                getch();
                 return;
             }
         case 2: {
                 drawCylinder(origin, dai, cao, rong);
+                getch();
                 return;
             }
     }

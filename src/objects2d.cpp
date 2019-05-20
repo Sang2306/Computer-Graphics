@@ -54,34 +54,34 @@ void drawTrafficLight()
 void drawEmojiWow(){
     Point2D faceEmoji (55, 28);
     realToMachine(faceEmoji);
-    bresenhamEllipse(faceEmoji,70,100,WHITE);
+    ellipseMidPoint(faceEmoji,70,100,WHITE);
     setfillstyle(SOLID_FILL, YELLOW);
     floodfill(faceEmoji.x, faceEmoji.y, WHITE);
 
     Point2D eyeLeftEmoji (48, 34);
     realToMachine(eyeLeftEmoji);
-    bresenhamEllipse(eyeLeftEmoji,12,20,WHITE);
+    ellipseMidPoint(eyeLeftEmoji,12,20,WHITE);
     setfillstyle(SOLID_FILL, BLACK);
     floodfill(eyeLeftEmoji.x, eyeLeftEmoji.y, WHITE);
 
     Point2D eyeRightEmoji (63, 34);
     realToMachine(eyeRightEmoji);
-    bresenhamEllipse(eyeRightEmoji,12,20,WHITE);
+    ellipseMidPoint(eyeRightEmoji,12,20,WHITE);
     setfillstyle(SOLID_FILL, BLACK);
     floodfill(eyeRightEmoji.x, eyeRightEmoji.y, WHITE);
 
     Point2D mouthEmoji (55, 18);
     realToMachine(mouthEmoji);
-    bresenhamEllipse(mouthEmoji,25,45,WHITE);
+    ellipseMidPoint(mouthEmoji,25,45,WHITE);
     setfillstyle(SOLID_FILL, BLACK);
     floodfill(mouthEmoji.x, mouthEmoji.y, WHITE);
 
 
     Point2D eyesbrownLeftEmoji (48, 35);
     realToMachine(eyesbrownLeftEmoji);
-    haftBresenhamEllipse(eyesbrownLeftEmoji,12,25,BLACK);
+    halfEllipseMidPoint(eyesbrownLeftEmoji,12,25,BLACK);
 
     Point2D eyesbrownRightEmoji (63, 35);
     realToMachine(eyesbrownRightEmoji);
-    haftBresenhamEllipse(eyesbrownRightEmoji,12,25,BLACK);
+    halfEllipseMidPoint(eyesbrownRightEmoji,12,25,BLACK);
 }

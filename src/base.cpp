@@ -251,7 +251,6 @@ void bresenhamCircle(Point2D center, float r, int color)
 
 static int count = 0;
 void drawEllipse(Point2D center, int x, int y, int color, bool half_dotted){
-    //cho hien thi roi cho 5 lan goi
     putpixel(center.x - x, center.y + y, color);
     putpixel(center.x + x, center.y + y, color);
     //neu ve nua vong ellipse ben trong su dung '.'
@@ -273,70 +272,18 @@ void drawEllipse(Point2D center, int x, int y, int color, bool half_dotted){
     count++;
 }
 
-void bresenhamEllipse(Point2D center, int a, int b, int color){
-    float p, a2, b2;
-    int x, y;
-
-    a2 = a * a;
-    b2 = b * b;
-    //Nhanh 1
-    x = 0; y = b;
-    p = 2 * b2/a2 - 2*b + 1;
-    while(((b2/a2)*(x/y)) < 1 )
+void drawHalfEllipse(Point2D center, int x, int y, int color, bool half_above)
+{
+    switch(half_above)
     {
-        drawEllipse(center, x, y, color);
-        if(p < 0)
-        {
-            p = p + 2 * (b2 / a2) * (2*x + 3);
-        }
-        else
-        {
-            p = p - 4*y + 2*(b2/a2)*(2*x + 3);
-            y = y - 1;
-        }
-        x = x + 1;
-    }
-    //Nhanh 2
-    x = a; y = 0;
-    p = 2 * (a2/b2) - 2*a + 1;
-    while(((a2/b2)*(y/x)) <= 1 )
-    {
-        drawEllipse(center, x, y, color);
-        if(p < 0)
-        {
-            p = p + 2 * (a2 / b2) * (2*y + 3);
-        }
-        else
-        {
-            p = p - 4*x + 2*(a2/b2)*(2*y + 3);
-            x = x - 1;
-        }
-        y = y + 1;
-    }
-}
-
-void haftBresenhamEllipse(Point2D center, int a, int b, int color){
-    float p, a2, b2;
-    int x, y;
-
-    a2 = a * a;
-    b2 = b * b;
-    //Nhanh 1
-    x = 0; y = b;
-    p = 2 * b2/a2 - 2*b + 1;
-    while(((b2/a2)*(x/y)) < 1 )
-    {
-        drawEllipse(center, x, y, color);
-        if(p < 0)
-        {
-            p = p + 2 * (b2 / a2) * (2*x + 3);
-        }
-        else
-        {
-            p = p - 4*y + 2*(b2/a2)*(2*x + 3);
-            y = y - 1;
-        }
-        x = x + 1;
+        case true:{
+            putpixel(center.x - x, center.y - y, color);
+            putpixel(center.x + x, center.y - y, color);
+        }break;
+        case false:{
+            putpixel(center.x - x, center.y + y, color);
+            putpixel(center.x + x, center.y + y, color);
+        }break;
     }
 }
 
@@ -367,7 +314,7 @@ void ellipseMidPoint(Point2D center, int a, int b, int color, bool half_dotted)
         }
         drawEllipse(center, x, y, color, half_dotted);
     }
-    /* For Region 2*/
+    /* Vung 2*/
     p = round(b2 * (x + 0.5)*(x + 0.5) + a2 * (y - 1)*(y - 1) - a2 * b2);
     while(y > 0){
         y--;
@@ -380,5 +327,59 @@ void ellipseMidPoint(Point2D center, int a, int b, int color, bool half_dotted)
             p += a2 - py + px;
         }
         drawEllipse(center, x, y, color, half_dotted);
+    }
+}
+/* have_line: co duong thang d chia nua tren va nua duoi hay khong
+   half_above: ve nua tren set = true, nua duoi set = false (mac dinh true)
+*/
+void halfEllipseMidPoint(Point2D center, int a, int b, int color, bool have_line, bool half_above)
+{
+    int a2 = a*a;
+    int b2 = b*b;
+    int twoa2 = 2 * a2;
+    int twob2 = 2 * b2;
+    int p;
+    int x = 0;
+    int y = b;
+    int px = 0;
+    int py = twoa2 * y;
+    /* ve duong thang ngan cach gia hai nua cua ellipse */
+    if(have_line)
+    {
+        //diem tan cung ben trai cua ellipse
+        Point2D left_most(center.x - a, center.y);
+        //diem tan cung ben phai cua ellipse
+        Point2D right_most(center.x + a, center.y);
+        //noi hai diem lai
+        bresenhamLine(left_most, right_most, color);
+    }
+    drawHalfEllipse(center, x, y, color, half_above);
+    /* Vung 1 */
+    p = round(b2 - (a2*b) + (0.25) * a2);
+    while(px < py){
+        x++;
+        px += twob2;
+        if(p < 0){
+            p += b2 + px;
+        }else{
+            y--;
+            py -= twoa2;
+            p += b2 + px - py;
+        }
+        drawHalfEllipse(center, x, y, color, half_above);
+    }
+    /* Vung 2*/
+    p = round(b2 * (x + 0.5)*(x + 0.5) + a2 * (y - 1)*(y - 1) - a2 * b2);
+    while(y > 0){
+        y--;
+        py -= twoa2;
+        if(p > 0){
+            p += a2 - py;
+        }else{
+            x++;
+            px += twob2;
+            p += a2 - py + px;
+        }
+        drawHalfEllipse(center, x, y, color, half_above);
     }
 }
