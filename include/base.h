@@ -36,8 +36,6 @@ void putpoint(const Point2D& point, int color = WHITE);
 /*he toa do 2D va 3D*/
 void draw2DCoor(const Point2D& mid);
 void draw3DCoor();
-/*Ham nay se bi loai bo trong cac phien ban tiep theo*/
-Point2D getPointOz(int unit_num);
 
 /*chuyen toa do the gioi thuc ve toa do may tinh*/
 void realToMachine(Point2D& point);
