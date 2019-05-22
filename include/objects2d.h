@@ -5,5 +5,7 @@
 void drawTrafficLight();
 //ham ve emoji
 void drawEmojiWow();
+//ham scale traffic light
+void ScaleTrafficLight(float, float);
 
 #endif // OBJECTS2D_H

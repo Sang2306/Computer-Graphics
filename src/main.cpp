@@ -63,10 +63,11 @@ void chooseObject2Draw()
     Print_at(0, 0, "---CHON VAT THE DE VE 2D---");
     Print_at(5, 1, "1: TRAFFIC LIGHTS");
     Print_at(5, 2, "2: EMOJI");
-    Print_at(0, 4, ">>>");
+    Print_at(5, 3, "3: SCALED TRAFFIC LIGHTS");
+    Print_at(0, 5, ">>>");
     short choice;
     std::cin >> choice;
-    if(choice != 1 && choice !=2)
+    if(choice != 1 && choice != 2 && choice != 3)
     {
         Clear_at(0, 0, 60, 40);
         goto again;
@@ -80,6 +81,11 @@ void chooseObject2Draw()
             }
         case 2: {
                 drawEmojiWow();
+                getch();
+                return;
+            }
+        case 3: {
+                ScaleTrafficLight(1.5, 1.5);
                 getch();
                 return;
             }
