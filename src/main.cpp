@@ -85,7 +85,7 @@ void chooseObject2Draw()
                 return;
             }
         case 3: {
-                ScaleTrafficLight(1.5, 1.5);
+                ScaleTrafficLight(.5, .5);
                 getch();
                 return;
             }
