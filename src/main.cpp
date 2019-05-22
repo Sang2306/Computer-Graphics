@@ -38,8 +38,6 @@ int chooseCoorSystem()
         goto again;
     }
     clearviewport();
-    if(choice == 3)
-        return -1;
     if(choice == 1)
     {
         Point2D origin(0, 0);               //goc toa do
@@ -54,6 +52,7 @@ int chooseCoorSystem()
         chooseObject3Draw();
         return 0;
     }
+    return -1;
 }
 
 void chooseObject2Draw()
@@ -64,31 +63,50 @@ void chooseObject2Draw()
     Print_at(5, 1, "1: TRAFFIC LIGHTS");
     Print_at(5, 2, "2: EMOJI");
     Print_at(5, 3, "3: SCALED TRAFFIC LIGHTS");
-    Print_at(0, 5, ">>>");
+    Print_at(5, 4, "4: TRANSLATE TRAFFIC LIGHTS");
+    Print_at(0, 6, ">>>");
     short choice;
     std::cin >> choice;
-    if(choice != 1 && choice != 2 && choice != 3)
-    {
-        Clear_at(0, 0, 60, 40);
-        goto again;
-    }
     switch(choice)
     {
-        case 1: {
-                drawTrafficLight();
-                getch();
-                return;
-            }
+        case 1:{
+            drawTrafficLight();
+            break;
+        }
         case 2: {
-                drawEmojiWow();
-                getch();
-                return;
-            }
+            drawEmojiWow();
+            break;
+        }
         case 3: {
-                ScaleTrafficLight(.5, .5);
-                getch();
-                return;
+            //tao hieu ung chuyen dong
+            float sx = 0.1, sy = 0.1;
+            while(true)
+            {
+                ScaleTrafficLight(sx, sy);
+                sx = sx > 1.2 ? 0.1 : sx + 0.1;
+                sy = sy > 1.2 ? 0.1 : sy + 0.1;
+                delay(300);
+                clearviewport();
+                Point2D origin(0, 0);               //goc toa do
+                realToMachine(origin);              //chuyen sang toa do thuc sang toa do may
+                draw2DCoor(origin);
             }
+            break;
+        }
+        case 4:{
+            int light_number = 1;
+            while(true)
+            {
+                translateTrafficLight(0, 7, light_number);
+                light_number++;
+                light_number = light_number == 4 ? 1 : light_number;
+            }
+            break;
+        }
+        default:{
+            Clear_at(0, 0, 60, 40);
+            goto again;
+        }
     }
 }
 
@@ -117,13 +135,12 @@ void chooseObject3Draw()
     {
         case 1: {
                 drawCube(origin, dai, cao, rong);
-                getch();
-                return;
+                break;
             }
         case 2: {
                 drawCylinder(origin, dai, cao, rong);
-                getch();
-                return;
+                break;
             }
+        default: break;
     }
 }

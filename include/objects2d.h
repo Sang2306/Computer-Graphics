@@ -7,5 +7,6 @@ void drawTrafficLight();
 void drawEmojiWow();
 //ham scale traffic light
 void ScaleTrafficLight(float, float);
-
+//ham tinh tien den giao thong
+void translateTrafficLight(float tr_x, float tr_y, int light_number);
 #endif // OBJECTS2D_H

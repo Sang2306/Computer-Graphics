@@ -27,19 +27,6 @@ void draw3DCoor()
     outtextxy(endZ_2D.x, endZ_2D.y, "Z");
 }
 
-/*Ham nay se bi loai bo trong cac phien ban tiep theo*/
-Point2D getPointOz(int unit_num)
-{
-    /*
-        ham tra ve toa do cua don vi tren truc oz
-    */
-    Point2D point;
-    //chuyen doi toa do cho truc z
-    point.x = midX - unit_num*5*cos(45); //x = toa do tam.x - don vi * 5 px * cos(45)
-    point.y = midY + unit_num*5*sin(45); //y = toa do tam.y + don vi * 5 px + sin(45)
-    return point;
-}
-
 void realToMachine(Point2D& point)
 {
     /*
