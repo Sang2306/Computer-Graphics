@@ -44,7 +44,7 @@ Point2D transformTo2D(Point3D& point);
 void translateCompute(Point2D& point, float tr_x, float tr_y);
 void scaleCompute(Point2D& point, float sx, float sy);
 void rotateCompute(Point2D& point, float alpha);
-
+Point2D symmetryCompute(Point2D point, short axis = 0);
 /*ham ve duong thang va duong tron*/
 void bresenhamLine(Point2D p1, Point2D p2, int color, bool solid=true);
 /*Put cac pixel trong circle*/
