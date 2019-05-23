@@ -114,6 +114,57 @@ void rotateCompute(Point2D& point, float alpha)
     point.h = vector[0]*rotate[0][2] + vector[1]*rotate[1][2] + vector[2]*rotate[2][2];
 }
 
+Point2D symmetryCompute(Point2D point, short axis)
+{
+    /*
+        0 : truc O
+        1 : truc Ox
+        2 : truc Oy
+    */
+    float vector[3] = {
+        point.x,
+        point.y,
+        point.h
+    };
+    switch(axis)
+    {
+        case 0:{
+            float symmetry[3][3] = {
+                {-1, 0, 0},
+                {0, -1, 0},
+                {0, 0, 1},
+            };
+            point.x = symmetry[0][0] * vector[0] + symmetry[0][1] * vector[1] + symmetry[0][2] * vector[2];
+            point.y = symmetry[1][0] * vector[0] + symmetry[1][1] * vector[1] + symmetry[1][2] * vector[2];
+            point.h = symmetry[2][0] * vector[0] + symmetry[2][1] * vector[1] + symmetry[2][2] * vector[2];
+            break;
+        };
+        case 1:{
+            float symmetry[3][3] = {
+                {1, 0, 0},
+                {0, -1, 0},
+                {0, 0, 1},
+            };
+            point.x = symmetry[0][0] * vector[0] + symmetry[0][1] * vector[1] + symmetry[0][2] * vector[2];
+            point.y = symmetry[1][0] * vector[0] + symmetry[1][1] * vector[1] + symmetry[1][2] * vector[2];
+            point.h = symmetry[2][0] * vector[0] + symmetry[2][1] * vector[1] + symmetry[2][2] * vector[2];
+            break;
+        };
+        case 2:{
+            float symmetry[3][3] = {
+                {-1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1},
+            };
+            point.x = symmetry[0][0] * vector[0] + symmetry[0][1] * vector[1] + symmetry[0][2] * vector[2];
+            point.y = symmetry[1][0] * vector[0] + symmetry[1][1] * vector[1] + symmetry[1][2] * vector[2];
+            point.h = symmetry[2][0] * vector[0] + symmetry[2][1] * vector[1] + symmetry[2][2] * vector[2];
+            break;
+        };
+        default: break;
+    }
+    return Point2D(point);
+}
 
 void bresenhamLine(Point2D p1, Point2D p2, int color, bool solid)
 {
