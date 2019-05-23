@@ -5,11 +5,12 @@ int radius = 6, small_radius = 4, unit = 5;
 
 void drawTrafficLight()
 {
+
     Point2D topLeft (45, 50);
     Point2D bottomRight (65, 20);
+    Point2D bottomLeft(topLeft.x, bottomRight.y);
+    Point2D topRight(bottomRight.x, topLeft.y);
 
-    Point2D bottomLeft(topLeft.x, bottomRight.y); //(45, 20)
-    Point2D topRight(bottomRight.x, topLeft.y); //(65, 50)
     Point2D bottomRightUp (bottomRight.x + 4, bottomRight.y + 4);
     Point2D topLeftUp (topLeft.x + 4, topLeft.y + 4);
 
@@ -40,14 +41,8 @@ void drawTrafficLight()
     realToMachine(bottomRightUp);
     bresenhamLine(bottomRightUp, bottomRight, WHITE);
 
-    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
-    bresenhamLine(topRightUp, topRight, WHITE);
-
-    bresenhamLine(topRightUp, topLeftUp, WHITE);
-    bresenhamLine(topRightUp, bottomRightUp, WHITE);
-
     realToMachine(redLight);
-    bresenhamCircle(redLight, small_radius*unit, RED);
+    bresenhamCircle(redLight, small_radius*unit, LIGHTRED);
     setfillstyle(SOLID_FILL, LIGHTRED);
     floodfill(redLight.x, redLight.y, LIGHTRED);
 
@@ -60,9 +55,16 @@ void drawTrafficLight()
     bresenhamCircle(greenLight, small_radius*unit, GREEN);
     setfillstyle(SOLID_FILL, GREEN);
     floodfill(greenLight.x, greenLight.y, GREEN);
+
+    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
+    bresenhamLine(topRightUp, topRight, WHITE);
+
+    bresenhamLine(topRightUp, topLeftUp, WHITE);
+    bresenhamLine(topRightUp, bottomRightUp, WHITE);
+
 }
 
-void ScaleTrafficLight(float sx, float sy)
+void ScaleTrafficLight(float sx, float sy, int light_number)
 {
     Point2D topLeft (45, 50);
     Point2D bottomRight (65, 20);
@@ -88,10 +90,22 @@ void ScaleTrafficLight(float sx, float sy)
     //ve tru de giao thong
     Point2D pole_top((topLeft.x + bottomRight.x)/2, bottomRight.y);
     Point2D pole_down((topLeft.x + bottomRight.x)/2, bottomRight.y + (bottomRight.y - topLeft.y));
+    //ve 2 ben le duong
+    Point2D d1(pole_down.x - bottomLeft.x, pole_down.y - (pole_down.y - pole_top.y));
+    Point2D d2(pole_down.x + bottomLeft.x, pole_down.y + (pole_down.y - pole_top.y));
+    Point2D d3 = symmetryCompute(d1, 2);
+    Point2D d4 = symmetryCompute(d2, 2);
+
     realToMachine(pole_down);
     realToMachine(pole_top);
+    realToMachine(d1);
+    realToMachine(d2);
+    realToMachine(d3);
+    realToMachine(d4);
     bresenhamLine(pole_down, pole_top, WHITE);
-
+    bresenhamLine(d1, d2, WHITE);
+    bresenhamLine(d3, d4, WHITE);
+    //
     realToMachine(topLeft);
     realToMachine(bottomRight);
     realToMachine(bottomLeft);
@@ -108,21 +122,31 @@ void ScaleTrafficLight(float sx, float sy)
     realToMachine(bottomRightUp);
     bresenhamLine(bottomRightUp, bottomRight, WHITE);
 
-    realToMachine(redLight);
-    bresenhamCircle(redLight, small_radius*unit*sx, LIGHTRED);
-    setfillstyle(SOLID_FILL, LIGHTRED);
-    floodfill(redLight.x, redLight.y, LIGHTRED);
-
-    realToMachine(yellowLight);
-    bresenhamCircle(yellowLight, small_radius*unit*sx, YELLOW);
-    setfillstyle(SOLID_FILL, YELLOW);
-    floodfill(yellowLight.x, yellowLight.y, YELLOW);
-
-    realToMachine(greenLight);
-    bresenhamCircle(greenLight, small_radius*unit*sx, GREEN);
-    setfillstyle(SOLID_FILL, GREEN);
-    floodfill(greenLight.x, greenLight.y, GREEN);
-
+    switch(light_number)
+    {
+        case 1:{
+            realToMachine(redLight);
+            bresenhamCircle(redLight, small_radius*unit*sx, LIGHTRED);
+            setfillstyle(SOLID_FILL, LIGHTRED);
+            floodfill(redLight.x, redLight.y, LIGHTRED);
+            break;
+        };
+        case 2:{
+            realToMachine(yellowLight);
+            bresenhamCircle(yellowLight, small_radius*unit*sx, YELLOW);
+            setfillstyle(SOLID_FILL, YELLOW);
+            floodfill(yellowLight.x, yellowLight.y, YELLOW);
+            break;
+        };
+        case 3:{
+            realToMachine(greenLight);
+            bresenhamCircle(greenLight, small_radius*unit*sx, GREEN);
+            setfillstyle(SOLID_FILL, GREEN);
+            floodfill(greenLight.x, greenLight.y, GREEN);
+            break;
+        };
+        default: break;
+    }
     Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
     bresenhamLine(topRightUp, topRight, WHITE);
 
@@ -142,12 +166,25 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
 
     Point2D light ((topLeft.x + topRight.x)/2, ((topLeft.y + bottomLeft.y)/2 + topLeft.y)/2);
 
-    //ve tru de giao thong
+   //ve tru de giao thong
     Point2D pole_top((topLeft.x + bottomRight.x)/2, bottomRight.y);
     Point2D pole_down((topLeft.x + bottomRight.x)/2, bottomRight.y + (bottomRight.y - topLeft.y));
+    //ve 2 ben le duong
+    Point2D d1(pole_down.x - bottomLeft.x, pole_down.y - (pole_down.y - pole_top.y));
+    Point2D d2(pole_down.x + bottomLeft.x, pole_down.y + (pole_down.y - pole_top.y));
+    Point2D d3 = symmetryCompute(d1, 2);
+    Point2D d4 = symmetryCompute(d2, 2);
+
     realToMachine(pole_down);
     realToMachine(pole_top);
+    realToMachine(d1);
+    realToMachine(d2);
+    realToMachine(d3);
+    realToMachine(d4);
     bresenhamLine(pole_down, pole_top, WHITE);
+    bresenhamLine(d1, d2, WHITE);
+    bresenhamLine(d3, d4, WHITE);
+    //
 
     realToMachine(topLeft);
     realToMachine(bottomRight);
