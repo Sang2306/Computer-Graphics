@@ -64,7 +64,7 @@ void drawTrafficLight()
 
 }
 
-void ScaleTrafficLight(float sx, float sy)
+void ScaleTrafficLight(float sx, float sy, int light_number)
 {
     Point2D topLeft (45, 50);
     Point2D bottomRight (65, 20);
@@ -110,21 +110,31 @@ void ScaleTrafficLight(float sx, float sy)
     realToMachine(bottomRightUp);
     bresenhamLine(bottomRightUp, bottomRight, WHITE);
 
-    realToMachine(redLight);
-    bresenhamCircle(redLight, small_radius*unit*sx, LIGHTRED);
-    setfillstyle(SOLID_FILL, LIGHTRED);
-    floodfill(redLight.x, redLight.y, LIGHTRED);
-
-    realToMachine(yellowLight);
-    bresenhamCircle(yellowLight, small_radius*unit*sx, YELLOW);
-    setfillstyle(SOLID_FILL, YELLOW);
-    floodfill(yellowLight.x, yellowLight.y, YELLOW);
-
-    realToMachine(greenLight);
-    bresenhamCircle(greenLight, small_radius*unit*sx, GREEN);
-    setfillstyle(SOLID_FILL, GREEN);
-    floodfill(greenLight.x, greenLight.y, GREEN);
-
+    switch(light_number)
+    {
+        case 1:{
+            realToMachine(redLight);
+            bresenhamCircle(redLight, small_radius*unit*sx, LIGHTRED);
+            setfillstyle(SOLID_FILL, LIGHTRED);
+            floodfill(redLight.x, redLight.y, LIGHTRED);
+            break;
+        };
+        case 2:{
+            realToMachine(yellowLight);
+            bresenhamCircle(yellowLight, small_radius*unit*sx, YELLOW);
+            setfillstyle(SOLID_FILL, YELLOW);
+            floodfill(yellowLight.x, yellowLight.y, YELLOW);
+            break;
+        };
+        case 3:{
+            realToMachine(greenLight);
+            bresenhamCircle(greenLight, small_radius*unit*sx, GREEN);
+            setfillstyle(SOLID_FILL, GREEN);
+            floodfill(greenLight.x, greenLight.y, GREEN);
+            break;
+        };
+        default: break;
+    }
     Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
     bresenhamLine(topRightUp, topRight, WHITE);
 

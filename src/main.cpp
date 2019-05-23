@@ -62,8 +62,7 @@ void chooseObject2Draw()
     Print_at(0, 0, "---CHON VAT THE DE VE 2D---");
     Print_at(5, 1, "1: TRAFFIC LIGHTS");
     Print_at(5, 2, "2: EMOJI");
-    Print_at(5, 3, "3: SCALED TRAFFIC LIGHTS");
-    Print_at(5, 4, "4: TRANSLATE TRAFFIC LIGHTS");
+    Print_at(5, 3, "3: AMINATE TRAFFIC LIGHTS");
     Print_at(0, 6, ">>>");
     short choice;
     std::cin >> choice;
@@ -77,29 +76,46 @@ void chooseObject2Draw()
             drawEmojiWow();
             break;
         }
-        case 3: {
-            //tao hieu ung chuyen dong
-            float sx = 0.1, sy = 0.1;
-            while(true)
-            {
-                ScaleTrafficLight(sx, sy);
-                sx = sx > 1.2 ? 0.1 : sx + 0.1;
-                sy = sy > 1.2 ? 0.1 : sy + 0.1;
-                delay(300);
-                clearviewport();
-                Point2D origin(0, 0);               //goc toa do
-                realToMachine(origin);              //chuyen sang toa do thuc sang toa do may
-                draw2DCoor(origin);
-            }
-            break;
-        }
-        case 4:{
+        case 3:{
             int light_number = 1;
             while(true)
             {
                 translateTrafficLight(0, 7, light_number);
                 light_number++;
-                light_number = light_number == 4 ? 1 : light_number;
+                if (light_number == 3)
+                {
+                    translateTrafficLight(0, 7, light_number);
+                    light_number--; //chon den vang
+                    int time_to_change = 0; //3 lan scale thi doi mau
+                    float sx = 0.1, sy = 0.1;
+                    int times = 0;
+                    while(true)
+                    {
+                        ScaleTrafficLight(sx, sy, light_number);
+                        times = sx > 1 ? 1 : 0;
+                        if (times==1)
+                        {
+                            clearviewport();
+                            Point2D origin(0, 0);               //goc toa do
+                            realToMachine(origin);              //chuyen sang toa do thuc sang toa do may
+                            draw2DCoor(origin);
+                            break;
+                        }
+                        sx = sx > 1 ? 0.1 : sx + 0.1;
+                        sy = sy > 1 ? 0.1 : sy + 0.1;
+                        delay(300);
+                        clearviewport();
+                        Point2D origin(0, 0);               //goc toa do
+                        realToMachine(origin);              //chuyen sang toa do thuc sang toa do may
+                        draw2DCoor(origin);
+
+                        time_to_change++;
+                        light_number = time_to_change == 4 ? light_number + 1 : light_number;
+                        time_to_change = time_to_change == 4 ? 0 : time_to_change;
+
+                    }
+                    light_number = 1;
+                }
             }
             break;
         }

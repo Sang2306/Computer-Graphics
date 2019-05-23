@@ -98,7 +98,7 @@
 	"../include/base.h"
 	<cmath>
 
-1558588718 source:c:\users\sang4vn\desktop\computer-graphics\src\main.cpp
+1558600011 source:c:\users\sang4vn\desktop\computer-graphics\src\main.cpp
 	<iostream>
 	<cstdio>
 	<graphics.h>
@@ -114,12 +114,12 @@
 	<iostream>
 	<windows.h>
 
-1558538851 c:\users\sang4vn\desktop\computer-graphics\include\objects2d.h
+1558601744 c:\users\sang4vn\desktop\computer-graphics\include\objects2d.h
 
 1558265525 c:\users\sang4vn\desktop\computer-graphics\include\objects3d.h
 	"../include/base.h"
 
-1558599007 source:c:\users\sang4vn\desktop\computer-graphics\src\objects2d.cpp
+1558601728 source:c:\users\sang4vn\desktop\computer-graphics\src\objects2d.cpp
 	"../include/objects2d.h"
 	"../include/base.h"
 
