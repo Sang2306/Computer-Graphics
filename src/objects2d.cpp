@@ -90,10 +90,22 @@ void ScaleTrafficLight(float sx, float sy, int light_number)
     //ve tru de giao thong
     Point2D pole_top((topLeft.x + bottomRight.x)/2, bottomRight.y);
     Point2D pole_down((topLeft.x + bottomRight.x)/2, bottomRight.y + (bottomRight.y - topLeft.y));
+    //ve 2 ben le duong
+    Point2D d1(pole_down.x - bottomLeft.x, pole_down.y - (pole_down.y - pole_top.y));
+    Point2D d2(pole_down.x + bottomLeft.x, pole_down.y + (pole_down.y - pole_top.y));
+    Point2D d3 = symmetryCompute(d1, 2);
+    Point2D d4 = symmetryCompute(d2, 2);
+
     realToMachine(pole_down);
     realToMachine(pole_top);
+    realToMachine(d1);
+    realToMachine(d2);
+    realToMachine(d3);
+    realToMachine(d4);
     bresenhamLine(pole_down, pole_top, WHITE);
-
+    bresenhamLine(d1, d2, WHITE);
+    bresenhamLine(d3, d4, WHITE);
+    //
     realToMachine(topLeft);
     realToMachine(bottomRight);
     realToMachine(bottomLeft);
@@ -154,12 +166,25 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
 
     Point2D light ((topLeft.x + topRight.x)/2, ((topLeft.y + bottomLeft.y)/2 + topLeft.y)/2);
 
-    //ve tru de giao thong
+   //ve tru de giao thong
     Point2D pole_top((topLeft.x + bottomRight.x)/2, bottomRight.y);
     Point2D pole_down((topLeft.x + bottomRight.x)/2, bottomRight.y + (bottomRight.y - topLeft.y));
+    //ve 2 ben le duong
+    Point2D d1(pole_down.x - bottomLeft.x, pole_down.y - (pole_down.y - pole_top.y));
+    Point2D d2(pole_down.x + bottomLeft.x, pole_down.y + (pole_down.y - pole_top.y));
+    Point2D d3 = symmetryCompute(d1, 2);
+    Point2D d4 = symmetryCompute(d2, 2);
+
     realToMachine(pole_down);
     realToMachine(pole_top);
+    realToMachine(d1);
+    realToMachine(d2);
+    realToMachine(d3);
+    realToMachine(d4);
     bresenhamLine(pole_down, pole_top, WHITE);
+    bresenhamLine(d1, d2, WHITE);
+    bresenhamLine(d3, d4, WHITE);
+    //
 
     realToMachine(topLeft);
     realToMachine(bottomRight);
