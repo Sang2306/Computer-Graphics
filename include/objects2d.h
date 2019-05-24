@@ -5,6 +5,7 @@
 void drawTrafficLight();
 //ham ve emoji
 void drawEmojiWow();
+void drawEmojiHaha();
 //ham scale traffic light
 void ScaleTrafficLight(float sx, float sy, int light_number);
 //ham tinh tien den giao thong

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <csignal>
 #include <graphics.h>
 #include "../include/base.h"
 #include "../include/consolelib.h"
@@ -8,6 +9,15 @@
 int chooseCoorSystem();
 void chooseObject2Draw();
 void chooseObject3Draw();
+//////////////////////////////////
+bool run = true;
+//xu ly tin hieu interupt
+void signalHandle(int sig_number)
+{
+    if(sig_number == SIGINT)
+        run = false;
+}
+//////////////////////////////////
 //////////////////////////////////////MAIN FUNC////////////////////////////////////////////////////
 int main(int argc, char* argv[]){
     initwindow(width, height, "KY THUAT DO HOA");
@@ -61,9 +71,10 @@ void chooseObject2Draw()
     Clear_at(0, 0, 60, 40);
     Print_at(0, 0, "---CHON VAT THE DE VE 2D---");
     Print_at(5, 1, "1: TRAFFIC LIGHTS");
-    Print_at(5, 2, "2: EMOJI");
-    Print_at(5, 3, "3: AMINATE TRAFFIC LIGHTS");
-    Print_at(0, 6, ">>>");
+    Print_at(5, 2, "2: EMOJI WOW");
+    Print_at(5, 3, "3: EMOJI HAHA");
+    Print_at(5, 4, "4: AMINATE TRAFFIC LIGHTS");
+    Print_at(0, 7, ">>>");
     short choice;
     std::cin >> choice;
     switch(choice)
@@ -76,9 +87,15 @@ void chooseObject2Draw()
             drawEmojiWow();
             break;
         }
-        case 3:{
+        case 3: {
+            drawEmojiHaha();
+            break;
+        }
+        case 4:{
+            //Xu ly signal khi dung CTRL+C
+            signal(SIGINT, signalHandle);
             int light_number = 1;
-            while(true)
+            while(run)
             {
                 translateTrafficLight(0, 7, light_number);
                 light_number++;
@@ -89,7 +106,7 @@ void chooseObject2Draw()
                     int time_to_change = 0; //3 lan scale thi doi mau
                     float sx = 0.1, sy = 0.1;
                     int times = 0;
-                    while(true)
+                    while(run)
                     {
                         ScaleTrafficLight(sx, sy, light_number);
                         times = sx > 1 ? 1 : 0;
@@ -117,6 +134,7 @@ void chooseObject2Draw()
                     light_number = 1;
                 }
             }
+            run = true;
             break;
         }
         default:{
