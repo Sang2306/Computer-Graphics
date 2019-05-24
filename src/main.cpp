@@ -71,9 +71,10 @@ void chooseObject2Draw()
     Clear_at(0, 0, 60, 40);
     Print_at(0, 0, "---CHON VAT THE DE VE 2D---");
     Print_at(5, 1, "1: TRAFFIC LIGHTS");
-    Print_at(5, 2, "2: EMOJI");
-    Print_at(5, 3, "3: AMINATE TRAFFIC LIGHTS");
-    Print_at(0, 6, ">>>");
+    Print_at(5, 2, "2: EMOJI WOW");
+    Print_at(5, 3, "3: EMOJI HAHA");
+    Print_at(5, 4, "4: AMINATE TRAFFIC LIGHTS");
+    Print_at(0, 7, ">>>");
     short choice;
     std::cin >> choice;
     switch(choice)
@@ -83,11 +84,14 @@ void chooseObject2Draw()
             break;
         }
         case 2: {
-            //drawEmojiWow();
+            drawEmojiWow();
+            break;
+        }
+        case 3: {
             drawEmojiHaha();
             break;
         }
-        case 3:{
+        case 4:{
             //Xu ly signal khi dung CTRL+C
             signal(SIGINT, signalHandle);
             int light_number = 1;

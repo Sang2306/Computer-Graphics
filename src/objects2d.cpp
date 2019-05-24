@@ -322,24 +322,68 @@ void drawEmojiWow(){
 
 void drawEmojiHaha()
 {
-    Point2D faceEmoji (55, 20);//55, 28
+    for(short truc = 0; truc <= 3; truc++)
+    {
+        Point2D faceEmoji (55, 20);//55, 28
+        Point2D mouthEmoji (faceEmoji);
+        Point2D tongueEmoji(mouthEmoji.x, mouthEmoji.y - 4.1);
 
-    Point2D mouthEmoji (faceEmoji);
-    Point2D tongueEmoji(mouthEmoji.x, mouthEmoji.y - 4.1);
-    //chuyen sang toa do may
-    realToMachine(faceEmoji);
-    realToMachine(mouthEmoji);
-    realToMachine(tongueEmoji);
-     /*ve face*/
-    bresenhamCircle(faceEmoji, 10*unit, YELLOW);
-    setfillstyle(SOLID_FILL, YELLOW);
-    floodfill(faceEmoji.x, faceEmoji.y, YELLOW);
-    /*ve mieng*/
-    halfEllipseMidPoint(mouthEmoji, 6*unit, 6*unit, BLACK, true, false);
-    setfillstyle(SOLID_FILL, BLACK);
-    floodfill(mouthEmoji.x, mouthEmoji.y+2, BLACK);
-    /*ve luoi*/
-    ellipseMidPoint(tongueEmoji, 4.3*unit, 1.8*unit, LIGHTRED);
-    setfillstyle(SOLID_FILL, LIGHTRED);
-    floodfill(tongueEmoji.x, tongueEmoji.y, LIGHTRED);
+        Point2D leftEyeEmoji(faceEmoji.x - 4, faceEmoji.y + 4);
+        Point2D leftUpEyeEmoji(faceEmoji.x - 6, faceEmoji.y + 6);
+        Point2D leftDownEyeEmoji(faceEmoji.x - 6, faceEmoji.y + 2);
+        Point2D rightEyeEmoji(faceEmoji.x + 4, faceEmoji.y + 4);
+        Point2D rightUpEyeEmoji(faceEmoji.x + 6, faceEmoji.y + 6);
+        Point2D rightDownEyeEmoji(faceEmoji.x + 6, faceEmoji.y + 2);
+
+        if(truc != 3)
+        {
+            //doi xung truc x//
+            faceEmoji = symmetryCompute(faceEmoji, truc);
+            mouthEmoji = symmetryCompute(mouthEmoji, truc);
+            tongueEmoji = symmetryCompute(tongueEmoji, truc);
+            leftEyeEmoji = symmetryCompute(leftEyeEmoji, truc);
+            leftUpEyeEmoji = symmetryCompute(leftUpEyeEmoji, truc);
+            leftDownEyeEmoji = symmetryCompute(leftDownEyeEmoji, truc);
+            rightEyeEmoji = symmetryCompute(rightEyeEmoji, truc);
+            rightUpEyeEmoji = symmetryCompute(rightUpEyeEmoji, truc);
+            rightDownEyeEmoji = symmetryCompute(rightDownEyeEmoji, truc);
+        }
+
+        //chuyen sang toa do may
+        realToMachine(faceEmoji);
+        realToMachine(mouthEmoji);
+        realToMachine(tongueEmoji);
+        realToMachine(leftEyeEmoji);
+        realToMachine(leftUpEyeEmoji);
+        realToMachine(leftDownEyeEmoji);
+        realToMachine(rightEyeEmoji);
+        realToMachine(rightUpEyeEmoji);
+        realToMachine(rightDownEyeEmoji);
+        /*ve face*/
+        bresenhamCircle(faceEmoji, 10*unit, YELLOW);
+        setfillstyle(SOLID_FILL, YELLOW);
+        floodfill(faceEmoji.x, faceEmoji.y, YELLOW);
+        /*ve eye*/
+        bresenhamLine(leftEyeEmoji, leftUpEyeEmoji, BLACK);
+        bresenhamLine(leftEyeEmoji, leftDownEyeEmoji, BLACK);
+        bresenhamLine(rightEyeEmoji, rightUpEyeEmoji, BLACK);
+        bresenhamLine(rightEyeEmoji, rightDownEyeEmoji, BLACK);
+        /*ve mieng*/
+        if(truc == 1 || truc == 0)
+        {
+            halfEllipseMidPoint(mouthEmoji, 6*unit, 6*unit, BLACK, true, true);
+            setfillstyle(SOLID_FILL, BLACK);
+            floodfill(mouthEmoji.x, mouthEmoji.y-2, BLACK);
+        }
+        else
+        {
+            halfEllipseMidPoint(mouthEmoji, 6*unit, 6*unit, BLACK, true, false);
+            setfillstyle(SOLID_FILL, BLACK);
+            floodfill(mouthEmoji.x, mouthEmoji.y+2, BLACK);
+        }
+        /*ve luoi*/
+        ellipseMidPoint(tongueEmoji, 4.3*unit, 1.8*unit, LIGHTRED);
+        setfillstyle(SOLID_FILL, LIGHTRED);
+        floodfill(tongueEmoji.x, tongueEmoji.y, LIGHTRED);
+    }
 }

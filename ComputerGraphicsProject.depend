@@ -98,7 +98,7 @@
 	"../include/base.h"
 	<cmath>
 
-1558693742 source:c:\users\sang4vn\desktop\computer-graphics\src\main.cpp
+1558710569 source:c:\users\sang4vn\desktop\computer-graphics\src\main.cpp
 	<iostream>
 	<cstdio>
 	<csignal>
@@ -120,7 +120,7 @@
 1558265525 c:\users\sang4vn\desktop\computer-graphics\include\objects3d.h
 	"../include/base.h"
 
-1558694914 source:c:\users\sang4vn\desktop\computer-graphics\src\objects2d.cpp
+1558710522 source:c:\users\sang4vn\desktop\computer-graphics\src\objects2d.cpp
 	"../include/objects2d.h"
 	"../include/base.h"
 
