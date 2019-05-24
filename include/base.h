@@ -2,7 +2,6 @@
 #define BASE_H
 #include <graphics.h>
 #define PI 3.141592654
-
 class Point2D
 {
     public:

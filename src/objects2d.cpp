@@ -252,7 +252,7 @@ void drawEmojiWow(){
     int alpha = 0;
     int time_to_change_mouth_shape = 2;
     while(alpha <= 360){
-        Point2D faceEmoji (55, 28);
+        Point2D faceEmoji (55, 20);//55, 28
         rotateCompute(faceEmoji,alpha);
 
         Point2D eyeLeftEmoji (faceEmoji.x - 5, faceEmoji.y + 5);
@@ -273,42 +273,42 @@ void drawEmojiWow(){
         realToMachine(mouthEmoji);
 
         //ve face
-        ellipseMidPoint(faceEmoji, 70, 70,YELLOW);
+        ellipseMidPoint(faceEmoji, 14*unit, 14*unit,YELLOW);
         setfillstyle(SOLID_FILL, YELLOW);
         floodfill(faceEmoji.x, faceEmoji.y, YELLOW);
 
         //mat trai, phai
-        ellipseMidPoint(eyeLeftEmoji, 12, 20, BLACK);
+        ellipseMidPoint(eyeLeftEmoji, 3*unit, 4*unit, BLACK);
         setfillstyle(SOLID_FILL, BLACK);
         floodfill(eyeLeftEmoji.x, eyeLeftEmoji.y, BLACK);
 
-        ellipseMidPoint(eyeRightEmoji, 12, 20, BLACK);
+        ellipseMidPoint(eyeRightEmoji, 3*unit, 4*unit, BLACK);
         setfillstyle(SOLID_FILL, BLACK);
         floodfill(eyeRightEmoji.x, eyeRightEmoji.y, BLACK);
 
         if(time_to_change_mouth_shape==0)
         {
-            ellipseMidPoint(mouthEmoji, 25, 25, BLACK);
+            ellipseMidPoint(mouthEmoji, 5*unit, 5*unit, BLACK);
             time_to_change_mouth_shape = 2;
         }
         else
-            ellipseMidPoint(mouthEmoji, 20, 35, BLACK);
+            ellipseMidPoint(mouthEmoji, 4*unit, 7*unit, BLACK);
         setfillstyle(SOLID_FILL, BLACK);
         floodfill(mouthEmoji.x, mouthEmoji.y, BLACK);
 
         //chan may
-        halfEllipseMidPoint(eyesbrownLeftEmoji, 15, 5,BLACK);
+        halfEllipseMidPoint(eyesbrownLeftEmoji, 3*unit, 1*unit,BLACK);
         setfillstyle(SOLID_FILL, BLACK);
         floodfill(eyesbrownLeftEmoji.x, eyesbrownLeftEmoji.y-2, BLACK);
 
-        halfEllipseMidPoint(eyesbrownRightEmoji, 15, 5,BLACK);
+        halfEllipseMidPoint(eyesbrownRightEmoji, 3*unit, 1*unit,BLACK);
         setfillstyle(SOLID_FILL, BLACK);
         floodfill(eyesbrownRightEmoji.x, eyesbrownRightEmoji.y-2, BLACK);
 
         //tang goc
         alpha = alpha + 10;
         time_to_change_mouth_shape--;
-        delay(100);
+        delay(1000);
 
         setfillstyle(SOLID_FILL, BLACK);
         floodfill(faceEmoji.x, faceEmoji.y-15, BLACK);
@@ -318,4 +318,28 @@ void drawEmojiWow(){
         draw2DCoor(origin);
     }
 
+}
+
+void drawEmojiHaha()
+{
+    Point2D faceEmoji (55, 20);//55, 28
+
+    Point2D mouthEmoji (faceEmoji);
+    Point2D tongueEmoji(mouthEmoji.x, mouthEmoji.y - 4.1);
+    //chuyen sang toa do may
+    realToMachine(faceEmoji);
+    realToMachine(mouthEmoji);
+    realToMachine(tongueEmoji);
+     /*ve face*/
+    bresenhamCircle(faceEmoji, 10*unit, YELLOW);
+    setfillstyle(SOLID_FILL, YELLOW);
+    floodfill(faceEmoji.x, faceEmoji.y, YELLOW);
+    /*ve mieng*/
+    halfEllipseMidPoint(mouthEmoji, 6*unit, 6*unit, BLACK, true, false);
+    setfillstyle(SOLID_FILL, BLACK);
+    floodfill(mouthEmoji.x, mouthEmoji.y+2, BLACK);
+    /*ve luoi*/
+    ellipseMidPoint(tongueEmoji, 4.3*unit, 1.8*unit, LIGHTRED);
+    setfillstyle(SOLID_FILL, LIGHTRED);
+    floodfill(tongueEmoji.x, tongueEmoji.y, LIGHTRED);
 }
