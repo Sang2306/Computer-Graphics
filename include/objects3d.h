@@ -4,5 +4,5 @@
 //ham ve hinh hop
 void drawCube(Point3D origin, int ox, int oy, int oz);
 //ham ve hinh cau
-void drawCylinder(Point3D origin, int ox, int oy, int oz);
+void drawCylinder(Point3D origin, int r, int cao);
 #endif // OBJECTS3D_H

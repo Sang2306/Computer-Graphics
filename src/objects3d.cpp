@@ -65,12 +65,12 @@ void drawCube(Point3D origin, int ox, int oy, int oz)
     bresenhamLine(O_2D, D_2D, YELLOW, false);
 }
 /*ox: dai, oy: cao, oz: rong*/
-void drawCylinder(Point3D origin, int ox, int oy, int oz)
+void drawCylinder(Point3D origin, int r, int cao)
 {
     Point3D O_3D_below(origin);
     int a, b, unit = 5;
-    a = (ox + O_3D_below.x)*unit;
-    b = (oz + O_3D_below.z)*unit;
+    a = (r + O_3D_below.x)*unit;
+    b = a;
     //Mat duoi
     Point2D O_2D_below = transformTo2D(O_3D_below);
     bgiout << "O " << std::setprecision(3) << O_2D_below.x << ", " << O_2D_below.y;
@@ -80,7 +80,7 @@ void drawCylinder(Point3D origin, int ox, int oy, int oz)
 
     outstreamxy(O_2D_below.x, O_2D_below.y);
     //Mat tren
-    Point3D O_3D_above(O_3D_below.x, oy, O_3D_below.z);
+    Point3D O_3D_above(O_3D_below.x, cao, O_3D_below.z);
 
     Point2D O_2D_above = transformTo2D(O_3D_above);
     bgiout << "O' " << std::setprecision(3) << O_2D_above.x << ", " << O_2D_above.y;

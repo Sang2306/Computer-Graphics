@@ -162,17 +162,20 @@ void chooseObject3Draw()
     Print_at(0, 4, "Nhap toa do diem goc(0 0 0): ");
     Point3D origin;
     std::cin >> origin.x >> origin.y >> origin.z;
-    Print_at(0, 5, "Nhap vao dai, cao, rong(15 30 10): ");
-    int dai, cao, rong;
-    std::cin >> dai >> cao >> rong;
     switch(choice)
     {
         case 1: {
+                Print_at(0, 5, "Nhap vao dai, cao, rong(15 30 10): ");
+                int dai, cao, rong;
+                std::cin >> dai >> cao >> rong;
                 drawCube(origin, dai, cao, rong);
                 break;
             }
         case 2: {
-                drawCylinder(origin, dai, cao, rong);
+                Print_at(0, 5, "Nhap vao ban kinh, chieu cao(10, 30): ");
+                int r, cao;
+                std::cin >> r >> cao;
+                drawCylinder(origin, r, cao);
                 break;
             }
         default: break;
