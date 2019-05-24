@@ -249,35 +249,73 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
 }
 
 void drawEmojiWow(){
-    Point2D faceEmoji (55, 28);
-    realToMachine(faceEmoji);
-    ellipseMidPoint(faceEmoji,70,100,WHITE);
-    setfillstyle(SOLID_FILL, YELLOW);
-    floodfill(faceEmoji.x, faceEmoji.y, WHITE);
+    int alpha = 0;
+    int time_to_change_mouth_shape = 2;
+    while(alpha <= 360){
+        Point2D faceEmoji (55, 28);
+        rotateCompute(faceEmoji,alpha);
 
-    Point2D eyeLeftEmoji (48, 34);
-    realToMachine(eyeLeftEmoji);
-    ellipseMidPoint(eyeLeftEmoji,12,20,WHITE);
-    setfillstyle(SOLID_FILL, BLACK);
-    floodfill(eyeLeftEmoji.x, eyeLeftEmoji.y, WHITE);
+        Point2D eyeLeftEmoji (faceEmoji.x - 5, faceEmoji.y + 5);
+        Point2D eyesbrownLeftEmoji (eyeLeftEmoji.x, eyeLeftEmoji.y + 5);
 
-    Point2D eyeRightEmoji (63, 34);
-    realToMachine(eyeRightEmoji);
-    ellipseMidPoint(eyeRightEmoji,12,20,WHITE);
-    setfillstyle(SOLID_FILL, BLACK);
-    floodfill(eyeRightEmoji.x, eyeRightEmoji.y, WHITE);
+        Point2D eyeRightEmoji (faceEmoji.x + 5, faceEmoji.y + 5);
+        Point2D eyesbrownRightEmoji (eyeRightEmoji.x, eyeRightEmoji.y + 5);
 
-    Point2D mouthEmoji (55, 18);
-    realToMachine(mouthEmoji);
-    ellipseMidPoint(mouthEmoji,25,45,WHITE);
-    setfillstyle(SOLID_FILL, BLACK);
-    floodfill(mouthEmoji.x, mouthEmoji.y, WHITE);
+        Point2D mouthEmoji (faceEmoji.x, faceEmoji.y - 5);
 
-    Point2D eyesbrownLeftEmoji (48, 35);
-    realToMachine(eyesbrownLeftEmoji);
-    halfEllipseMidPoint(eyesbrownLeftEmoji,12,25,BLACK);
 
-    Point2D eyesbrownRightEmoji (63, 35);
-    realToMachine(eyesbrownRightEmoji);
-    halfEllipseMidPoint(eyesbrownRightEmoji,12,25,BLACK);
+        //chuyen sang toa do may
+        realToMachine(faceEmoji);
+        realToMachine(eyeLeftEmoji);
+        realToMachine(eyesbrownLeftEmoji);
+        realToMachine(eyeRightEmoji);
+        realToMachine(eyesbrownRightEmoji);
+        realToMachine(mouthEmoji);
+
+        //ve face
+        ellipseMidPoint(faceEmoji, 70, 70,YELLOW);
+        setfillstyle(SOLID_FILL, YELLOW);
+        floodfill(faceEmoji.x, faceEmoji.y, YELLOW);
+
+        //mat trai, phai
+        ellipseMidPoint(eyeLeftEmoji, 12, 20, BLACK);
+        setfillstyle(SOLID_FILL, BLACK);
+        floodfill(eyeLeftEmoji.x, eyeLeftEmoji.y, BLACK);
+
+        ellipseMidPoint(eyeRightEmoji, 12, 20, BLACK);
+        setfillstyle(SOLID_FILL, BLACK);
+        floodfill(eyeRightEmoji.x, eyeRightEmoji.y, BLACK);
+
+        if(time_to_change_mouth_shape==0)
+        {
+            ellipseMidPoint(mouthEmoji, 25, 25, BLACK);
+            time_to_change_mouth_shape = 2;
+        }
+        else
+            ellipseMidPoint(mouthEmoji, 20, 35, BLACK);
+        setfillstyle(SOLID_FILL, BLACK);
+        floodfill(mouthEmoji.x, mouthEmoji.y, BLACK);
+
+        //chan may
+        halfEllipseMidPoint(eyesbrownLeftEmoji, 15, 5,BLACK);
+        setfillstyle(SOLID_FILL, BLACK);
+        floodfill(eyesbrownLeftEmoji.x, eyesbrownLeftEmoji.y-2, BLACK);
+
+        halfEllipseMidPoint(eyesbrownRightEmoji, 15, 5,BLACK);
+        setfillstyle(SOLID_FILL, BLACK);
+        floodfill(eyesbrownRightEmoji.x, eyesbrownRightEmoji.y-2, BLACK);
+
+        //tang goc
+        alpha = alpha + 10;
+        time_to_change_mouth_shape--;
+        delay(100);
+
+        setfillstyle(SOLID_FILL, BLACK);
+        floodfill(faceEmoji.x, faceEmoji.y-15, BLACK);
+
+        Point2D origin(0, 0);               //goc toa do
+        realToMachine(origin);              //chuyen sang toa do thuc sang toa do may
+        draw2DCoor(origin);
+    }
+
 }
