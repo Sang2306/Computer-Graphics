@@ -208,3 +208,39 @@
 	"../include/base.h"
 	<cmath>
 
+1558752564 source:c:\users\sang4vn\downloads\computer-graphics\src\main.cpp
+	<iostream>
+	<cstdio>
+	<csignal>
+	<graphics.h>
+	"../include/base.h"
+	"../include/consolelib.h"
+	"../include/objects2d.h"
+	"../include/objects3d.h"
+
+1558714521 c:\users\sang4vn\downloads\computer-graphics\include\base.h
+	<graphics.h>
+
+1558714521 c:\users\sang4vn\downloads\computer-graphics\include\consolelib.h
+	<iostream>
+	<windows.h>
+
+1558714521 c:\users\sang4vn\downloads\computer-graphics\include\objects2d.h
+
+1558714521 c:\users\sang4vn\downloads\computer-graphics\include\objects3d.h
+	"../include/base.h"
+
+1558767384 source:c:\users\sang4vn\downloads\computer-graphics\src\objects2d.cpp
+	"../include/objects2d.h"
+	"../include/base.h"
+	<iomanip>
+
+1558714521 source:c:\users\sang4vn\downloads\computer-graphics\src\objects3d.cpp
+	"../include/objects3d.h"
+	<cmath>
+	<iomanip>
+
+1558752928 source:c:\users\sang4vn\downloads\computer-graphics\src\base.cpp
+	"../include/base.h"
+	<cmath>
+

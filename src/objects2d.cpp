@@ -399,22 +399,22 @@ void drawEmojiWow(){
         Point2D eyesbrownRightEmoji (eyeRightEmoji.x, eyeRightEmoji.y + 5);
 
         Point2D mouthEmoji (faceEmoji.x, faceEmoji.y - 5);
-        bgiout << "Face: (" << std::setprecision(3) << faceEmoji.x <<" , "<<faceEmoji.y<<")";
+        bgiout << "Face: (" << std::setprecision(3) << faceEmoji.x <<" , "<<faceEmoji.y<<")                                                 ";
         outstreamxy(20, 20);
 
-        bgiout << "EyeLeft: (" << std::setprecision(3) << eyeLeftEmoji.x <<" , "<<eyeLeftEmoji.y<<")";
+        bgiout << "EyeLeft: (" << std::setprecision(3) << eyeLeftEmoji.x <<" , "<<eyeLeftEmoji.y<<")                                        ";
         outstreamxy(20, 40);
 
-        bgiout << "EyeRight: ( " << std::setprecision(3) << eyeRightEmoji.x <<" , "<<eyeRightEmoji.y<<")";
+        bgiout << "EyeRight: ( " << std::setprecision(3) << eyeRightEmoji.x <<" , "<<eyeRightEmoji.y<<")                                    ";
         outstreamxy(20, 60);
 
-        bgiout << "Eyesbrown Left: (" << std::setprecision(3) << eyesbrownLeftEmoji.x <<" , "<<eyesbrownLeftEmoji.y<<")";
+        bgiout << "Eyesbrown Left: (" << std::setprecision(3) << eyesbrownLeftEmoji.x <<" , "<<eyesbrownLeftEmoji.y<<")                     ";
         outstreamxy(20, 80);
 
-        bgiout << "Eyesbrown Right: (" << std::setprecision(3) << eyesbrownRightEmoji.x <<" , "<<eyesbrownRightEmoji.y<<")";
+        bgiout << "Eyesbrown Right: (" << std::setprecision(3) << eyesbrownRightEmoji.x <<" , "<<eyesbrownRightEmoji.y<<")                  ";
         outstreamxy(20, 100);
 
-        bgiout << "Mouth: (" << std::setprecision(3) << mouthEmoji.x <<" , "<<mouthEmoji.y<<")";
+        bgiout << "Mouth: (" << std::setprecision(3) << mouthEmoji.x <<" , "<<mouthEmoji.y<<")                                              ";
         outstreamxy(20, 120);
         //chuyen sang toa do may
         realToMachine(faceEmoji);
@@ -457,6 +457,8 @@ void drawEmojiWow(){
         setfillstyle(SOLID_FILL, BLACK);
         floodfill(eyesbrownRightEmoji.x, eyesbrownRightEmoji.y-2, BLACK);
 
+        bgiout << "alpha: " << alpha << "      ";
+        outstreamxy(20, 140);
         //tang goc
         alpha = alpha + 10;
         time_to_change_mouth_shape--;
