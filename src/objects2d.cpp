@@ -1,6 +1,6 @@
 #include "../include/objects2d.h"
 #include "../include/base.h"
-
+#include <iomanip>
 int radius = 6, small_radius = 4, unit = 5;
 
 void drawTrafficLight()
@@ -13,6 +13,7 @@ void drawTrafficLight()
 
     Point2D bottomRightUp (bottomRight.x + 4, bottomRight.y + 4);
     Point2D topLeftUp (topLeft.x + 4, topLeft.y + 4);
+    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
 
     Point2D yellowLight ((topLeft.x + topRight.x)/2, (topLeft.y + bottomLeft.y)/2);
     Point2D greenLight ((topLeft.x + topRight.x)/2, ((topLeft.y + bottomLeft.y)/2 + bottomLeft.y)/2);
@@ -21,6 +22,43 @@ void drawTrafficLight()
     //ve tru de giao thong
     Point2D pole_top((topLeft.x + bottomRight.x)/2, bottomRight.y);
     Point2D pole_down((topLeft.x + bottomRight.x)/2, bottomRight.y + (bottomRight.y - topLeft.y));
+
+    bgiout << "Red Light: (" << std::setprecision(3) << redLight.x <<" , "<<redLight.y<<")";
+    outstreamxy(20, 20);
+
+    bgiout << "Yellow Light: (" << std::setprecision(3) << yellowLight.x <<" , "<<yellowLight.y<<")";
+    outstreamxy(20, 40);
+
+    bgiout << "Green Light: (" << std::setprecision(3) << greenLight.x <<" , "<<greenLight.y<<")";
+    outstreamxy(20, 60);
+
+    bgiout << "topLeft: (" << std::setprecision(3) << topLeft.x <<" , "<<topLeft.y<<")";
+    outstreamxy(20, 80);
+
+    bgiout << "bottomRight: (" << std::setprecision(3) << bottomRight.x <<" , "<<bottomRight.y<<")";
+    outstreamxy(20, 100);
+
+    bgiout << "bottomLeft: (" << std::setprecision(3) << bottomLeft.x <<" , "<<bottomLeft.y<<")";
+    outstreamxy(20, 120);
+
+    bgiout << "topRight: (" << std::setprecision(3) << topRight.x <<" , "<<topRight.y<<")";
+    outstreamxy(20, 140);
+
+    bgiout << "bottomRightUp: (" << std::setprecision(3) << bottomRightUp.x <<" , "<<bottomRightUp.y<<")";
+    outstreamxy(20, 160);
+
+    bgiout << "topLeftUp: (" << std::setprecision(3) << topLeftUp.x <<" , "<<topLeftUp.y<<")";
+    outstreamxy(20, 180);
+
+    bgiout << "topRightUp: (" << std::setprecision(3) << topRightUp.x <<" , "<<topRightUp.y<<")";
+    outstreamxy(20, 180);
+
+    bgiout << "pole_top: (" << std::setprecision(3) << pole_top.x <<" , "<<pole_top.y<<")";
+    outstreamxy(20, 200);
+
+    bgiout << "pole_down: (" << std::setprecision(3) << pole_down.x <<" , "<<pole_down.y<<")";
+    outstreamxy(20, 220);
+
     realToMachine(pole_down);
     realToMachine(pole_top);
     bresenhamLine(pole_down, pole_top, WHITE);
@@ -29,6 +67,7 @@ void drawTrafficLight()
     realToMachine(bottomRight);
     realToMachine(bottomLeft);
     realToMachine(topRight);
+    realToMachine(topRightUp);
 
     bresenhamLine(topLeft, topRight, WHITE);
     bresenhamLine(bottomRight, topRight, WHITE);
@@ -56,8 +95,8 @@ void drawTrafficLight()
     setfillstyle(SOLID_FILL, GREEN);
     floodfill(greenLight.x, greenLight.y, GREEN);
 
-    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
     bresenhamLine(topRightUp, topRight, WHITE);
+
 
     bresenhamLine(topRightUp, topLeftUp, WHITE);
     bresenhamLine(topRightUp, bottomRightUp, WHITE);
@@ -73,6 +112,7 @@ void ScaleTrafficLight(float sx, float sy, int light_number)
 
     Point2D bottomRightUp (bottomRight.x + 4, bottomRight.y + 4);
     Point2D topLeftUp (topLeft.x + 4, topLeft.y + 4);
+    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
 
     Point2D yellowLight ((topLeft.x + topRight.x)/2, (topLeft.y + bottomLeft.y)/2);
     Point2D greenLight ((topLeft.x + topRight.x)/2, ((topLeft.y + bottomLeft.y)/2 + bottomLeft.y)/2);
@@ -82,6 +122,7 @@ void ScaleTrafficLight(float sx, float sy, int light_number)
     scaleCompute(bottomRight, sx, sy);
     scaleCompute(bottomLeft, sx, sy);
     scaleCompute(topRight, sx, sy);
+    scaleCompute(topRightUp, sx, sy);
     scaleCompute(bottomRightUp, sx, sy);
     scaleCompute(topLeftUp, sx, sy);
     scaleCompute(yellowLight, sx, sy);
@@ -95,6 +136,54 @@ void ScaleTrafficLight(float sx, float sy, int light_number)
     Point2D d2(pole_down.x + bottomLeft.x, pole_down.y + (pole_down.y - pole_top.y));
     Point2D d3 = symmetryCompute(d1, 2);
     Point2D d4 = symmetryCompute(d2, 2);
+
+    bgiout << "Red Light: (" << std::setprecision(3) << redLight.x <<" , "<<redLight.y<<")";
+    outstreamxy(20, 20);
+
+    bgiout << "Yellow Light: (" << std::setprecision(3) << yellowLight.x <<" , "<<yellowLight.y<<")";
+    outstreamxy(20, 40);
+
+    bgiout << "Green Light: (" << std::setprecision(3) << greenLight.x <<" , "<<greenLight.y<<")";
+    outstreamxy(20, 60);
+
+    bgiout << "topLeft: (" << std::setprecision(3) << topLeft.x <<" , "<<topLeft.y<<")";
+    outstreamxy(20, 80);
+
+    bgiout << "bottomRight: (" << std::setprecision(3) << bottomRight.x <<" , "<<bottomRight.y<<")";
+    outstreamxy(20, 100);
+
+    bgiout << "bottomLeft: (" << std::setprecision(3) << bottomLeft.x <<" , "<<bottomLeft.y<<")";
+    outstreamxy(20, 120);
+
+    bgiout << "topRight: (" << std::setprecision(3) << topRight.x <<" , "<<topRight.y<<")";
+    outstreamxy(20, 140);
+
+    bgiout << "bottomRightUp: (" << std::setprecision(3) << bottomRightUp.x <<" , "<<bottomRightUp.y<<")";
+    outstreamxy(20, 160);
+
+    bgiout << "topLeftUp: (" << std::setprecision(3) << topLeftUp.x <<" , "<<topLeftUp.y<<")";
+    outstreamxy(20, 180);
+
+    bgiout << "topRightUp: (" << std::setprecision(3) << topRightUp.x <<" , "<<topRightUp.y<<")";
+    outstreamxy(20, 180);
+
+    bgiout << "pole_top: (" << std::setprecision(3) << pole_top.x <<" , "<<pole_top.y<<")";
+    outstreamxy(20, 200);
+
+    bgiout << "pole_down: (" << std::setprecision(3) << pole_down.x <<" , "<<pole_down.y<<")";
+    outstreamxy(20, 220);
+    //
+    bgiout << "d1: (" << std::setprecision(3) << d1.x <<" , "<<d1.y<<")";
+    outstreamxy(20, 240);
+
+    bgiout << "d2: (" << std::setprecision(3) << d2.x <<" , "<<d2.y<<")";
+    outstreamxy(20, 260);
+
+    bgiout << "d3: (" << std::setprecision(3) << d3.x <<" , "<<d3.y<<")";
+    outstreamxy(20, 280);
+
+    bgiout << "d4: (" << std::setprecision(3) << d4.x <<" , "<<d4.y<<")";
+    outstreamxy(20, 300);
 
     realToMachine(pole_down);
     realToMachine(pole_top);
@@ -110,6 +199,7 @@ void ScaleTrafficLight(float sx, float sy, int light_number)
     realToMachine(bottomRight);
     realToMachine(bottomLeft);
     realToMachine(topRight);
+    realToMachine(topRightUp);
 
     bresenhamLine(topLeft, topRight, WHITE);
     bresenhamLine(bottomRight, topRight, WHITE);
@@ -147,7 +237,7 @@ void ScaleTrafficLight(float sx, float sy, int light_number)
         };
         default: break;
     }
-    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
+
     bresenhamLine(topRightUp, topRight, WHITE);
 
     bresenhamLine(topRightUp, topLeftUp, WHITE);
@@ -163,6 +253,7 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
     Point2D topRight(bottomRight.x, topLeft.y); //(65, 50)
     Point2D bottomRightUp (bottomRight.x + 4, bottomRight.y + 4);
     Point2D topLeftUp (topLeft.x + 4, topLeft.y + 4);
+    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
 
     Point2D light ((topLeft.x + topRight.x)/2, ((topLeft.y + bottomLeft.y)/2 + topLeft.y)/2);
 
@@ -174,6 +265,45 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
     Point2D d2(pole_down.x + bottomLeft.x, pole_down.y + (pole_down.y - pole_top.y));
     Point2D d3 = symmetryCompute(d1, 2);
     Point2D d4 = symmetryCompute(d2, 2);
+
+    bgiout << "topLeft: (" << std::setprecision(3) << topLeft.x <<" , "<<topLeft.y<<")";
+    outstreamxy(20, 80);
+
+    bgiout << "bottomRight: (" << std::setprecision(3) << bottomRight.x <<" , "<<bottomRight.y<<")";
+    outstreamxy(20, 100);
+
+    bgiout << "bottomLeft: (" << std::setprecision(3) << bottomLeft.x <<" , "<<bottomLeft.y<<")";
+    outstreamxy(20, 120);
+
+    bgiout << "topRight: (" << std::setprecision(3) << topRight.x <<" , "<<topRight.y<<")";
+    outstreamxy(20, 140);
+
+    bgiout << "bottomRightUp: (" << std::setprecision(3) << bottomRightUp.x <<" , "<<bottomRightUp.y<<")";
+    outstreamxy(20, 160);
+
+    bgiout << "topLeftUp: (" << std::setprecision(3) << topLeftUp.x <<" , "<<topLeftUp.y<<")";
+    outstreamxy(20, 180);
+
+    bgiout << "topRightUp: (" << std::setprecision(3) << topRightUp.x <<" , "<<topRightUp.y<<")";
+    outstreamxy(20, 180);
+
+    bgiout << "pole_top: (" << std::setprecision(3) << pole_top.x <<" , "<<pole_top.y<<")";
+    outstreamxy(20, 200);
+
+    bgiout << "pole_down: (" << std::setprecision(3) << pole_down.x <<" , "<<pole_down.y<<")";
+    outstreamxy(20, 220);
+    //
+    bgiout << "d1: (" << std::setprecision(3) << d1.x <<" , "<<d1.y<<")";
+    outstreamxy(20, 240);
+
+    bgiout << "d2: (" << std::setprecision(3) << d2.x <<" , "<<d2.y<<")";
+    outstreamxy(20, 260);
+
+    bgiout << "d3: (" << std::setprecision(3) << d3.x <<" , "<<d3.y<<")";
+    outstreamxy(20, 280);
+
+    bgiout << "d4: (" << std::setprecision(3) << d4.x <<" , "<<d4.y<<")";
+    outstreamxy(20, 300);
 
     realToMachine(pole_down);
     realToMachine(pole_top);
@@ -190,6 +320,7 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
     realToMachine(bottomRight);
     realToMachine(bottomLeft);
     realToMachine(topRight);
+    realToMachine(topRightUp);
 
     bresenhamLine(topLeft, topRight, WHITE);
     bresenhamLine(bottomRight, topRight, WHITE);
@@ -202,7 +333,7 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
     realToMachine(bottomRightUp);
     bresenhamLine(bottomRightUp, bottomRight, WHITE);
 
-    Point2D topRightUp (bottomRightUp.x, topLeftUp.y);
+
     bresenhamLine(topRightUp, topRight, WHITE);
 
     bresenhamLine(topRightUp, topLeftUp, WHITE);
@@ -213,6 +344,8 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
     {
         case 1:{
             //den do
+            bgiout << "Light: (" << std::setprecision(3) << light.x <<" , "<<light.y<<")";
+            outstreamxy(20, 20);
             bresenhamCircle(light, radius*unit, LIGHTRED);
             setfillstyle(SOLID_FILL, LIGHTRED);
             floodfill(light.x, light.y, LIGHTRED);
@@ -224,6 +357,8 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
         case 2:{
             //den vang
             translateCompute(light, tr_x*unit, tr_y*unit);
+            bgiout << "Light: (" << std::setprecision(3) << light.x <<" , "<<light.y<<")";
+            outstreamxy(20, 20);
             bresenhamCircle(light, radius*unit, YELLOW);
             setfillstyle(SOLID_FILL, YELLOW);
             floodfill(light.x, light.y, YELLOW);
@@ -235,6 +370,8 @@ void translateTrafficLight(float tr_x, float tr_y, int light_number)
         case 3:{
             //den xanh
             translateCompute(light, tr_x*unit*2, tr_y*unit*2);
+            bgiout << "Light: (" << std::setprecision(3) << light.x <<" , "<<light.y<<")";
+            outstreamxy(20, 20);
             bresenhamCircle(light, radius*unit, GREEN);
             setfillstyle(SOLID_FILL, GREEN);
             floodfill(light.x, light.y, GREEN);
@@ -253,7 +390,7 @@ void drawEmojiWow(){
     int time_to_change_mouth_shape = 2;
     while(alpha <= 360){
         Point2D faceEmoji (55, 20);//55, 28
-        rotateCompute(faceEmoji,alpha);
+        rotateCompute(faceEmoji, alpha);
 
         Point2D eyeLeftEmoji (faceEmoji.x - 5, faceEmoji.y + 5);
         Point2D eyesbrownLeftEmoji (eyeLeftEmoji.x, eyeLeftEmoji.y + 5);
@@ -262,8 +399,23 @@ void drawEmojiWow(){
         Point2D eyesbrownRightEmoji (eyeRightEmoji.x, eyeRightEmoji.y + 5);
 
         Point2D mouthEmoji (faceEmoji.x, faceEmoji.y - 5);
+        bgiout << "Face: (" << std::setprecision(3) << faceEmoji.x <<" , "<<faceEmoji.y<<")";
+        outstreamxy(20, 20);
 
+        bgiout << "EyeLeft: (" << std::setprecision(3) << eyeLeftEmoji.x <<" , "<<eyeLeftEmoji.y<<")";
+        outstreamxy(20, 40);
 
+        bgiout << "EyeRight: ( " << std::setprecision(3) << eyeRightEmoji.x <<" , "<<eyeRightEmoji.y<<")";
+        outstreamxy(20, 60);
+
+        bgiout << "Eyesbrown Left: (" << std::setprecision(3) << eyesbrownLeftEmoji.x <<" , "<<eyesbrownLeftEmoji.y<<")";
+        outstreamxy(20, 80);
+
+        bgiout << "Eyesbrown Right: (" << std::setprecision(3) << eyesbrownRightEmoji.x <<" , "<<eyesbrownRightEmoji.y<<")";
+        outstreamxy(20, 100);
+
+        bgiout << "Mouth: (" << std::setprecision(3) << mouthEmoji.x <<" , "<<mouthEmoji.y<<")";
+        outstreamxy(20, 120);
         //chuyen sang toa do may
         realToMachine(faceEmoji);
         realToMachine(eyeLeftEmoji);
@@ -349,6 +501,30 @@ void drawEmojiHaha()
             rightDownEyeEmoji = symmetryCompute(rightDownEyeEmoji, truc);
         }
 
+        bgiout << "Face: (" << std::setprecision(3) << faceEmoji.x <<" , "<<faceEmoji.y<<")";
+        outstreamxy(20, 20);
+
+        bgiout << "EyeLeft: (" << std::setprecision(3) << leftEyeEmoji.x <<" , "<<leftEyeEmoji.y<<")";
+        outstreamxy(20, 40);
+
+        bgiout << "Left Up Eye: ( " << std::setprecision(3) << leftUpEyeEmoji.x <<" , "<<leftUpEyeEmoji.y<<")";
+        outstreamxy(20, 60);
+
+        bgiout << "Left Down Eye: (" << std::setprecision(3) << leftDownEyeEmoji.x <<" , "<<leftDownEyeEmoji.y<<")";
+        outstreamxy(20, 80);
+
+        bgiout << "Right Eye: (" << std::setprecision(3) << rightEyeEmoji.x <<" , "<<rightEyeEmoji.y<<")";
+        outstreamxy(20, 100);
+
+        bgiout << "Right Up Eye: ( " << std::setprecision(3) << rightUpEyeEmoji.x <<" , "<<rightUpEyeEmoji.y<<")";
+        outstreamxy(20, 120);
+
+        bgiout << "Right Down Eye: (" << std::setprecision(3) << rightDownEyeEmoji.x <<" , "<<rightDownEyeEmoji.y<<")";
+        outstreamxy(20, 140);
+
+        bgiout << "Mouth: (" << std::setprecision(3) << mouthEmoji.x <<" , "<<mouthEmoji.y<<")";
+        outstreamxy(20, 160);
+
         //chuyen sang toa do may
         realToMachine(faceEmoji);
         realToMachine(mouthEmoji);
@@ -385,5 +561,6 @@ void drawEmojiHaha()
         ellipseMidPoint(tongueEmoji, 4.3*unit, 1.8*unit, LIGHTRED);
         setfillstyle(SOLID_FILL, LIGHTRED);
         floodfill(tongueEmoji.x, tongueEmoji.y, LIGHTRED);
+        delay(2000);
     }
 }

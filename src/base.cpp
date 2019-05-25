@@ -43,7 +43,7 @@ void realToMachine(Point2D& point)
 Point2D transformTo2D(Point3D& point)
 {
     float a = 0.5; //cabinet 1/2 do dai bi giam
-    float phi = 60; //thay doi goc cua truc oz so voi truc ox
+    float phi = 45; //thay doi goc cua truc oz so voi truc ox
     float vector[4] = {
         point.x,
         point.y,

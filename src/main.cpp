@@ -71,9 +71,9 @@ void chooseObject2Draw()
     Clear_at(0, 0, 60, 40);
     Print_at(0, 0, "---CHON VAT THE DE VE 2D---");
     Print_at(5, 1, "1: TRAFFIC LIGHTS");
-    Print_at(5, 2, "2: EMOJI WOW");
-    Print_at(5, 3, "3: EMOJI HAHA");
-    Print_at(5, 4, "4: AMINATE TRAFFIC LIGHTS");
+    Print_at(5, 2, "2: EMOJI WOW VA PHEP QUAY");
+    Print_at(5, 3, "3: EMOJI HAHA VA PHEP DOI XUNG");
+    Print_at(5, 4, "4: THU PHONG VA TINH TIEN TRAFFIC LIGHTS");
     Print_at(0, 7, ">>>");
     short choice;
     std::cin >> choice;
@@ -120,7 +120,7 @@ void chooseObject2Draw()
                         }
                         sx = sx > 1 ? 0.1 : sx + 0.1;
                         sy = sy > 1 ? 0.1 : sy + 0.1;
-                        delay(300);
+                        delay(2000);
                         clearviewport();
                         Point2D origin(0, 0);               //goc toa do
                         realToMachine(origin);              //chuyen sang toa do thuc sang toa do may
